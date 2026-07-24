@@ -39,7 +39,7 @@ window.addEventListener("load", () => {
 ---------------------------*/
 
 const message =
-"Can I borrow your smile for just 2 minutes? 🥺❤️";
+"I've been wanting to say this properly for a while now... 🥺❤️";
 
 let i = 0;
 
@@ -119,6 +119,8 @@ Made with love by Ubaid 🤍`
 
         continueBtn.innerHTML="Continue 💖";
         continueBtn.style.transform="scale(1)";
+
+        window.location.href="teddy.html";
 
     },1200);
 
