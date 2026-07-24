@@ -17,22 +17,34 @@ window.addEventListener("load", () => {
 
     setTimeout(() => {
 
-        gsap.to(loading, {
+        const revealMain = () => {
 
-            opacity: 0,
-            duration: 1,
+            loading.style.display = "none";
+            main.style.display = "flex";
 
-            onComplete: () => {
+            startTyping();
+            animateCardEntrance();
 
-                loading.style.display = "none";
-                main.style.display = "flex";
+        };
 
-                startTyping();
-                animateCardEntrance();
+        if (typeof gsap !== "undefined") {
 
-            }
+            gsap.to(loading, {
 
-        });
+                opacity: 0,
+                duration: 1,
+                onComplete: revealMain
+
+            });
+
+        } else {
+
+            loading.style.transition = "1s";
+            loading.style.opacity = "0";
+
+            setTimeout(revealMain, 1000);
+
+        }
 
     },2500);
 
@@ -106,15 +118,27 @@ setInterval(createHeart,250);
 
 continueBtn.addEventListener("click",()=>{
 
-    gsap.to(continueBtn,{
+    if (typeof gsap !== "undefined") {
 
-        scale:.92,
-        duration:.15,
-        yoyo:true,
-        repeat:1,
-        ease:"power1.inOut"
+        gsap.to(continueBtn,{
 
-    });
+            scale:.92,
+            duration:.15,
+            yoyo:true,
+            repeat:1,
+            ease:"power1.inOut"
+
+        });
+
+    } else {
+
+        continueBtn.style.transform = "scale(.95)";
+
+        setTimeout(() => {
+            continueBtn.style.transform = "scale(1)";
+        }, 150);
+
+    }
 
     continueBtn.innerHTML="Loading Next Surprise... 💖";
 
@@ -158,14 +182,23 @@ document.body.appendChild(glow);
 
 document.addEventListener("mousemove",(e)=>{
 
-    gsap.to(glow,{
+    if (typeof gsap !== "undefined") {
 
-        left:e.clientX-10+"px",
-        top:e.clientY-10+"px",
-        duration:.3,
-        ease:"power3.out"
+        gsap.to(glow,{
 
-    });
+            left:e.clientX-10+"px",
+            top:e.clientY-10+"px",
+            duration:.3,
+            ease:"power3.out"
+
+        });
+
+    } else {
+
+        glow.style.left = e.clientX-10+"px";
+        glow.style.top = e.clientY-10+"px";
+
+    }
 
 });
 
@@ -175,6 +208,23 @@ document.addEventListener("mousemove",(e)=>{
 ---------------------------*/
 
 function animateCardEntrance(){
+
+    if (typeof gsap === "undefined") {
+
+        const card = document.querySelector(".glass-card");
+
+        if (card) {
+
+            card.animate([
+                { transform:"translateY(80px)", opacity:0 },
+                { transform:"translateY(0)", opacity:1 }
+            ],{ duration:1000, easing:"ease", fill:"forwards" });
+
+        }
+
+        return;
+
+    }
 
     const tl = gsap.timeline();
 
