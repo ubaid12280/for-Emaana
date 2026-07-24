@@ -1,0 +1,331 @@
+/* ==========================================
+   GALLERY PAGE
+   For Emaana ❤️
+========================================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:linear-gradient(135deg,#ffd8e8,#fff2f8,#ffeaf3);
+
+overflow-x:hidden;
+
+min-height:100vh;
+
+}
+
+/* Floating Hearts Background */
+
+.bg-hearts{
+
+position:fixed;
+
+inset:0;
+
+overflow:hidden;
+
+z-index:-1;
+
+}
+
+.bg-hearts::before{
+
+content:"❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️";
+
+position:absolute;
+
+left:-25%;
+
+bottom:-10%;
+
+font-size:26px;
+
+opacity:.15;
+
+white-space:nowrap;
+
+animation:hearts 22s linear infinite;
+
+}
+
+@keyframes hearts{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+100%{
+
+transform:translateY(-130vh) translateX(120vw);
+
+}
+
+}
+
+/* Main */
+
+.container{
+
+width:92%;
+
+max-width:1200px;
+
+margin:auto;
+
+padding:60px 0;
+
+text-align:center;
+
+}
+
+/* Heading */
+
+h1{
+
+font-size:48px;
+
+color:#ff3b85;
+
+margin-bottom:15px;
+
+}
+
+.subtitle{
+
+font-size:20px;
+
+line-height:36px;
+
+color:#666;
+
+margin-bottom:55px;
+
+}
+
+/* Gallery */
+
+.gallery{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:35px;
+
+}
+
+/* Photo Card */
+
+.photo{
+
+background:white;
+
+padding:15px;
+
+border-radius:18px;
+
+box-shadow:0 20px 45px rgba(0,0,0,.12);
+
+transition:.45s;
+
+position:relative;
+
+overflow:hidden;
+
+transform:rotate(0deg);
+
+}
+
+/* Different Rotations */
+
+.rotate-left{
+
+transform:rotate(-4deg);
+
+}
+
+.rotate-right{
+
+transform:rotate(4deg);
+
+}
+
+/* Hover */
+
+.photo:hover{
+
+transform:scale(1.05) rotate(0deg);
+
+box-shadow:0 30px 55px rgba(0,0,0,.18);
+
+}
+
+/* Image */
+
+.photo img{
+
+width:100%;
+
+height:320px;
+
+object-fit:cover;
+
+border-radius:12px;
+
+display:block;
+
+}
+
+/* Caption */
+
+.photo p{
+
+margin-top:15px;
+
+font-size:18px;
+
+font-weight:500;
+
+color:#555;
+
+line-height:30px;
+
+}
+
+/* Tape Effect */
+
+.photo::before{
+
+content:"";
+
+position:absolute;
+
+width:90px;
+
+height:28px;
+
+background:rgba(255,255,255,.75);
+
+top:-12px;
+
+left:50%;
+
+transform:translateX(-50%) rotate(-4deg);
+
+border-radius:6px;
+
+}
+
+/* Fade Animation */
+
+.photo{
+
+opacity:0;
+
+transform:translateY(60px);
+
+animation:fadeUp .9s forwards;
+
+}
+
+.photo:nth-child(1){animation-delay:.2s;}
+.photo:nth-child(2){animation-delay:.4s;}
+.photo:nth-child(3){animation-delay:.6s;}
+.photo:nth-child(4){animation-delay:.8s;}
+.photo:nth-child(5){animation-delay:1s;}
+.photo:nth-child(6){animation-delay:1.2s;}
+.photo:nth-child(7){animation-delay:1.4s;}
+.photo:nth-child(8){animation-delay:1.6s;}
+
+@keyframes fadeUp{
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* Button */
+
+button{
+
+margin:70px 0;
+
+padding:18px 60px;
+
+border:none;
+
+border-radius:50px;
+
+background:#ff3b85;
+
+color:white;
+
+font-size:20px;
+
+cursor:pointer;
+
+transition:.35s;
+
+box-shadow:0 15px 35px rgba(255,59,133,.35);
+
+}
+
+button:hover{
+
+background:#ff176e;
+
+transform:translateY(-6px);
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+h1{
+
+font-size:36px;
+
+}
+
+.subtitle{
+
+font-size:17px;
+
+line-height:30px;
+
+}
+
+.photo img{
+
+height:250px;
+
+}
+
+.photo p{
+
+font-size:16px;
+
+}
+
+button{
+
+width:100%;
+
+}
+
+}
