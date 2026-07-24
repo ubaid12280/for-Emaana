@@ -150,8 +150,6 @@ box-shadow:
 
 z-index:5;
 
-animation:appear 1.2s;
-
 }
 
 @keyframes appear{

@@ -57,6 +57,25 @@ Open My Heart ❤️
 
 </button>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="music.js"></script>
+
+<script>
+
+if (typeof gsap !== "undefined") {
+
+    gsap.timeline()
+
+        .from("h1",{opacity:0,scale:.5,duration:.8,ease:"back.out(1.7)"})
+        .from("h2",{opacity:0,y:20,duration:.6},"-=0.3")
+        .from("p",{opacity:0,y:15,duration:.6},"-=0.3")
+        .from("#next",{opacity:0,y:15,scale:.8,duration:.6,ease:"back.out(2)"},"-=0.3");
+
+}
+
+</script>
+
 </body>
 
 </html>
