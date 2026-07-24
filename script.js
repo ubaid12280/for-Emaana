@@ -17,17 +17,22 @@ window.addEventListener("load", () => {
 
     setTimeout(() => {
 
-        loading.style.opacity = "0";
-        loading.style.transition = "1s";
+        gsap.to(loading, {
 
-        setTimeout(() => {
+            opacity: 0,
+            duration: 1,
 
-            loading.style.display = "none";
-            main.style.display = "flex";
+            onComplete: () => {
 
-            startTyping();
+                loading.style.display = "none";
+                main.style.display = "flex";
 
-        },1000);
+                startTyping();
+                animateCardEntrance();
+
+            }
+
+        });
 
     },2500);
 
@@ -101,9 +106,17 @@ setInterval(createHeart,250);
 
 continueBtn.addEventListener("click",()=>{
 
-    continueBtn.innerHTML="Loading Next Surprise... 💖";
+    gsap.to(continueBtn,{
 
-    continueBtn.style.transform="scale(.95)";
+        scale:.92,
+        duration:.15,
+        yoyo:true,
+        repeat:1,
+        ease:"power1.inOut"
+
+    });
+
+    continueBtn.innerHTML="Loading Next Surprise... 💖";
 
     setTimeout(()=>{
 
@@ -118,7 +131,6 @@ Made with love by Ubaid 🤍`
         );
 
         continueBtn.innerHTML="Continue 💖";
-        continueBtn.style.transform="scale(1)";
 
         window.location.href="teddy.html";
 
@@ -146,44 +158,63 @@ document.body.appendChild(glow);
 
 document.addEventListener("mousemove",(e)=>{
 
-    glow.style.left=e.clientX-10+"px";
-    glow.style.top=e.clientY-10+"px";
+    gsap.to(glow,{
+
+        left:e.clientX-10+"px",
+        top:e.clientY-10+"px",
+        duration:.3,
+        ease:"power3.out"
+
+    });
 
 });
 
 
 /* --------------------------
-   Card Entrance Animation
+   Card Entrance Animation (GSAP)
 ---------------------------*/
 
-setTimeout(()=>{
+function animateCardEntrance(){
 
-    const card=document.querySelector(".glass-card");
+    const tl = gsap.timeline();
 
-    if(card){
+    tl.from(".glass-card",{
 
-        card.animate([
+        opacity:0,
+        y:70,
+        scale:.9,
+        duration:1,
+        ease:"back.out(1.4)"
 
-            {
-                transform:"translateY(80px)",
-                opacity:0
-            },
+    })
 
-            {
-                transform:"translateY(0)",
-                opacity:1
-            }
+    .from(".glass-card h3",{
 
-        ],{
+        opacity:0,
+        y:20,
+        duration:.6
 
-            duration:1200,
-            easing:"ease"
+    },"-=0.5")
 
-        });
+    .from(".glass-card p",{
 
-    }
+        opacity:0,
+        y:15,
+        duration:.6
 
-},3500);
+    },"-=0.2")
+
+    .from("#continue",{
+
+        opacity:0,
+        y:15,
+        scale:.8,
+        duration:.6,
+        ease:"back.out(2)"
+
+    },"-=0.3");
+
+}
 
 
 /* --------------------------
@@ -213,15 +244,6 @@ duration:2500
 });
 
 },4000);
-
-
-/* --------------------------
-   Future Music Placeholder
----------------------------*/
-
-// const music = new Audio("music.mp3");
-// music.loop = true;
-// music.play();
 
 
 console.log("❤️ Welcome Emaana");
