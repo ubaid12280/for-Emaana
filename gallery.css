@@ -171,7 +171,8 @@ box-shadow:0 30px 55px rgba(0,0,0,.18);
 
 /* Image */
 
-.photo img{
+.photo img,
+.photo video{
 
 width:100%;
 
@@ -310,7 +311,8 @@ line-height:30px;
 
 }
 
-.photo img{
+.photo img,
+.photo video{
 
 height:250px;
 
