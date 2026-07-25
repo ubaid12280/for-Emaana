@@ -93,7 +93,7 @@ function heart(){
 
 }
 
-setInterval(heart,300);
+let heartInterval = setInterval(heart,300);
 
 
 
@@ -134,11 +134,54 @@ function firework(){
    YES BUTTON
 ========================== */
 
+/* ==========================
+   YES BUTTON — Grand Finale
+========================== */
+
+const finale = document.getElementById("finale");
+const finaleText = document.getElementById("finale-text");
+const theEnd = document.getElementById("the-end");
+
+const closingLetter = `Emaana...
+
+There's a moment right now where everything I've been trying to say finally has nowhere left to hide.
+
+So here it is. The whole truth.
+
+You didn't just make my days better.
+You made me want to become someone worth staying for.
+
+Every fight. Every silence. Every late night message.
+Somehow it all led here — to this exact moment, to you saying yes.
+
+I don't have a grand gesture bigger than this little page.
+I just have me. All of me. Still choosing you. Still trying. Still yours.
+
+Thank you for being the softest place in my whole story.
+
+This isn't really an ending.
+It's just the first page of everything after this.
+
+❤️ Ubaid`;
+
 yes.onclick=function(){
+
+    // Stage 1 — Immediate celebration burst
 
     firework();
 
-    setInterval(firework,1200);
+    let burstCount = 0;
+
+    const burstInterval = setInterval(()=>{
+
+        firework();
+        burstCount++;
+
+        if(burstCount >= 4){
+            clearInterval(burstInterval);
+        }
+
+    },900);
 
     document.body.style.background=
     "linear-gradient(180deg,#ff8ab5,#ffbfd6,#fff2f7)";
@@ -160,17 +203,68 @@ every single day.
 
 ❤️
 
-Thank you for reading this little story.
-
-Love,
-
-Ubaid ❤️
-
 `;
 
     yes.style.display="none";
-
     no.style.display="none";
+
+    // Stage 2 — Dramatic pause, then reveal the closing letter
+
+    setTimeout(()=>{
+
+        document.body.style.transition="background 2s ease";
+        document.body.style.background=
+        "linear-gradient(180deg,#0b1023,#151c39,#241b4d)";
+
+        document.querySelector(".container").style.transition="opacity 1.2s ease";
+        document.querySelector(".container").style.opacity="0";
+
+        setTimeout(()=>{
+
+            document.querySelector(".container").style.display="none";
+
+            finale.classList.add("show");
+
+            clearInterval(heartInterval);
+            heartInterval = setInterval(heart, 1400);
+
+            let j = 0;
+
+            function typeClosing(){
+
+                if(j < closingLetter.length){
+
+                    finaleText.innerHTML += closingLetter.charAt(j);
+
+                    j++;
+
+                    setTimeout(typeClosing, 28);
+
+                } else {
+
+                    // Stage 3 — Everything settles, story closes
+
+                    setTimeout(()=>{
+
+                        theEnd.classList.add("show");
+
+                        setTimeout(()=>{
+
+                            clearInterval(heartInterval);
+
+                        },6000);
+
+                    },1400);
+
+                }
+
+            }
+
+            typeClosing();
+
+        },1300);
+
+    },4200);
 
 }
 
